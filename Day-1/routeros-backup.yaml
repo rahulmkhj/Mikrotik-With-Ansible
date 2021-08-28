@@ -1,0 +1,30 @@
+- name: Backup RouterOS Config
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Take backup of Mikrotik Device
+      routeros_command:
+        commands: "export"
+      register: config_backup
+
+    - name: Register Timestamp
+      local_action: command date +%Y-%m-%d
+      register: timestamp
+        
+    - name: Ensure the path exists
+      local_action:
+        module: file
+        path: backups/{{ ansible_host }}
+        recurse: yes
+        state: directory
+
+    - name: gather routeros facts
+      routeros_facts:
+        gather_subset:
+          - config
+
+    - name: Save Backup with Template
+      template:
+        src: templates/backup.j2
+        dest: "backups/{{ ansible_host }}/{{ timestamp.stdout }}.rsc"
+      delegate_to: localhost

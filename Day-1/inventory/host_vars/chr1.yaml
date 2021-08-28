@@ -1,0 +1,4 @@
+ansible_host: chr1.abater.io
+ansible_user: ansible
+identity: CHR1
+timezone: "Asia/Kolkata"

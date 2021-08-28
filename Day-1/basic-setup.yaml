@@ -1,0 +1,15 @@
+- name: Perform Basic Setup on Mikrotik
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Set Timezone
+      routeros_command:
+        commands: "/system clock set time-zone-name={{timezone}}"
+
+    - name: Set Router Identity
+      routeros_command:
+        commands: "/system identity set name={{identity}}"
+    
+    - name: Set NTP Server
+      routeros_command:
+        commands: "/system ntp client set enabled=yes primary-ntp={{ PrimaryNTP }} secondary-ntp={{ SecondaryNTP }}"

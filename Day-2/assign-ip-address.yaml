@@ -1,0 +1,7 @@
+- name: Assign IP Address
+  gather_facts: no
+  hosts: all
+  tasks:
+    - routeros_command:
+        commands: "/ip address add address={{ item.address }} interface={{ item.interface }}"
+      loop: "{{ ip_assignments }}"

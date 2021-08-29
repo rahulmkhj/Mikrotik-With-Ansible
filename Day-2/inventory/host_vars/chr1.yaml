@@ -1,0 +1,13 @@
+ansible_host: chr1.abater.io
+ansible_user: ansible
+identity: CHR1
+timezone: "Asia/Kolkata"
+ip_assignments:
+  - interface:  ether1
+    address:    '192.168.1.1/32'
+  - interface:  ether2
+    address:    '192.168.1.2/32'
+  - interface:  ether3
+    address:    '192.168.1.3/32'
+  - interface:  ether4
+    address:    '192.168.1.4/32'

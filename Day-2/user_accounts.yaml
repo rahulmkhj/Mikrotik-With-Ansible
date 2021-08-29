@@ -1,0 +1,7 @@
+users:
+  - username: rahul
+    password: rahul
+    group: full
+  - username: anurag
+    password: anurag
+    group: full

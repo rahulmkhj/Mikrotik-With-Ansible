@@ -1,0 +1,12 @@
+- name: Create User Accounts on Mikrotik
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Read User Information From File
+      include_vars:
+        file: user_accounts.yaml
+
+    - name: Create Accounts on Device
+      routeros_command:
+        commands: "/user add name={{ item.username }} password={{ item.password }} group={{ item.group }}"
+      loop: "{{ users }}"
